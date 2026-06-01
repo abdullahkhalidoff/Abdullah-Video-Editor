@@ -1,0 +1,624 @@
+'use client';
+
+import { useState } from 'react';
+
+export default function Home() {
+  const [activeSection, setActiveSection] = useState('about-me');
+
+  const keyAbilities = [
+    { icon: '🎬', title: 'Video Editing', description: 'Expert in Premiere Pro & CapCut Pro' },
+    { icon: '🎨', title: 'Color Grading', description: 'Professional color correction & enhancement' },
+    { icon: '✂️', title: 'Storytelling', description: 'Engaging narratives & audience retention' },
+    { icon: '🎵', title: 'Audio Enhancement', description: 'Sound design & audio mixing' },
+    { icon: '📱', title: 'Social Media', description: 'Platform-optimized content creation' },
+    { icon: '✨', title: 'Motion Graphics', description: 'Dynamic animations & effects' },
+  ];
+
+  const skills = {
+    technical: [
+      { name: 'Adobe Premiere Pro', level: 95 },
+      { name: 'CapCut Pro', level: 92 },
+      { name: 'Adobe After Effects', level: 85 },
+      { name: 'Color Grading', level: 88 },
+      { name: 'Audio Enhancement', level: 87 },
+    ],
+    creative: [
+      { name: 'Storytelling & Retention', level: 94 },
+      { name: 'Video Transitions', level: 90 },
+      { name: 'Captions & Subtitles', level: 93 },
+      { name: 'Motion Graphics', level: 82 },
+      { name: 'Social Media Management', level: 88 },
+    ],
+  };
+
+  const youtubeVideos = [
+    {
+      id: 'rvn7J6u5ebs',
+      title: 'Creative Short-Form Content',
+      description: 'Engaging YouTube Shorts with dynamic editing and visual storytelling',
+      isShort: true,
+    },
+    {
+      id: 'Q_1QMK-RtSY',
+      title: 'Professional Video Editing',
+      description: 'High-quality long-form content with cinematic editing and storytelling',
+      isShort: false,
+    },
+    {
+      id: 'eYxnmggYQDE',
+      title: 'Trending Shorts Video',
+      description: 'Motivational content with smooth transitions and impactful messaging',
+      isShort: true,
+    },
+    {
+      id: 'IF39jmSawYY',
+      title: 'Cinematic Video Production',
+      description: 'Professional editing with smooth pacing and visual storytelling',
+      isShort: false,
+    },
+    {
+      id: 'HwYxwoIL7AQ',
+      title: 'Professional YouTube Content',
+      description: 'Polished video editing with professional quality and storytelling',
+      isShort: false,
+    },
+    {
+      id: 'eInBfjVFMe8',
+      title: 'Engaging Shorts Video',
+      description: 'High-energy vertical content with attention-grabbing edits and effects',
+      isShort: true,
+    },
+    {
+      id: 'Bb4oLgCF2zU',
+      title: 'Viral Shorts Content',
+      description: 'Captivating short-form video with trending editing style',
+      isShort: true,
+    },
+    {
+      id: 'J84QXbqSJag',
+      title: 'YouTube Long-Form Video',
+      description: 'Comprehensive video editing with professional production quality',
+      isShort: false,
+    },
+    // Add more YouTube video IDs here
+  ];
+
+  return (
+    <div className="relative min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white overflow-x-hidden">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0f172a]/80 backdrop-blur-md border-b border-white/10">
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo/Name */}
+            <div className="text-2xl font-bold">
+              <span className="text-primary">AK</span>
+              <span className="text-white ml-1">.</span>
+            </div>
+            
+            {/* Nav Links */}
+            <div className="flex gap-8">
+              {['About Me', 'Skills', 'Work Experience', 'Portfolio', 'Contact'].map((item) => {
+                const sectionId = item.toLowerCase().replace(' ', '-');
+                return (
+                  <button
+                    key={item}
+                    onClick={() => {
+                      setActiveSection(sectionId);
+                      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 group ${
+                      activeSection === sectionId
+                        ? 'text-primary'
+                        : 'text-gray-300 hover:text-white'
+                    }`}
+                  >
+                    {item}
+                    <span
+                      className={`absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300 ${
+                        activeSection === sectionId
+                          ? 'scale-x-100'
+                          : 'scale-x-0 group-hover:scale-x-100'
+                      }`}
+                    />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Spacer for fixed nav */}
+      <div className="h-16"></div>
+
+      {/* About Me Section */}
+      <section id="about-me" className="relative min-h-screen flex items-center justify-center px-6 py-20 z-0">
+        <div className="max-w-6xl w-full">
+          {/* Hero Introduction */}
+          <div className="text-center mb-16 fade-in-up">
+            <h1 className="text-6xl md:text-8xl font-bold mb-6">
+              <span className="text-primary">ABDULLAH</span>
+              <br />
+              <span className="text-white">KHALID</span>
+            </h1>
+            <p className="text-2xl md:text-4xl text-secondary font-light mb-4">
+              Professional Video Editor
+            </p>
+            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+              Creative and detail-oriented Video Editor with 2+ years of combined experience 
+              specializing in storytelling, clean cuts, and brand-focused social media content.
+              I specialize in transforming complex stories into clear, compelling visuals.
+            </p>
+            <div className="flex gap-4 justify-center">
+              <button
+                onClick={() => {
+                  setActiveSection('portfolio');
+                  document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-8 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/50"
+              >
+                View Portfolio
+              </button>
+              <button
+                onClick={() => {
+                  setActiveSection('contact');
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-8 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold rounded-lg border border-white/30 transition-all duration-300 hover:scale-105"
+              >
+                Get In Touch
+              </button>
+            </div>
+          </div>
+
+          {/* Key Abilities */}
+          <div className="mb-12">
+            <h2 className="text-4xl font-bold text-center mb-12">
+              Key <span className="text-primary">Abilities</span>
+            </h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {keyAbilities.map((ability, index) => (
+                <div
+                  key={index}
+                  className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-primary/50 hover:scale-105 transition-all duration-300 fade-in-up"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="text-5xl mb-4">{ability.icon}</div>
+                  <h3 className="text-xl font-bold text-white mb-2">{ability.title}</h3>
+                  <p className="text-gray-400">{ability.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="text-center p-8 bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm rounded-2xl border border-primary/30 hover:scale-105 transition-all duration-300">
+              <div className="text-5xl font-bold text-primary mb-2">2+</div>
+              <div className="text-gray-400">Years Experience</div>
+            </div>
+            <div className="text-center p-8 bg-gradient-to-br from-secondary/10 to-secondary/5 backdrop-blur-sm rounded-2xl border border-secondary/30 hover:scale-105 transition-all duration-300">
+              <div className="text-5xl font-bold text-secondary mb-2">3</div>
+              <div className="text-gray-400">Companies Worked</div>
+            </div>
+            <div className="text-center p-8 bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm rounded-2xl border border-primary/30 hover:scale-105 transition-all duration-300">
+              <div className="text-5xl font-bold text-primary mb-2">200+</div>
+              <div className="text-gray-400">Videos Edited</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Decorative elements */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl animate-pulse" />
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="relative min-h-screen flex items-center justify-center px-6 py-20 z-0 bg-white/[0.02]">
+        <div className="max-w-6xl w-full">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold mb-4">
+              My <span className="text-primary">Skills</span>
+            </h2>
+            <p className="text-gray-400 text-lg mb-8">Technical expertise and creative abilities</p>
+            
+            {/* Bio */}
+            <div className="max-w-4xl mx-auto bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-white/10 mb-12">
+              <div className="space-y-4 text-lg text-gray-300 text-left">
+                <p>
+                  I'm a passionate video editor who transforms raw footage into compelling visual stories. 
+                  With expertise in Adobe Premiere Pro, CapCut Pro, and After Effects, I bring creative 
+                  visions to life through seamless editing, dynamic transitions, and engaging storytelling.
+                </p>
+                <p>
+                  My experience spans across multiple platforms including YouTube, Instagram Reels, TikTok, 
+                  and client-based projects. I specialize in creating content that not only looks professional 
+                  but also resonates with audiences and drives engagement.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* Technical Skills */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-white/10 hover:border-primary/30 transition-all duration-300">
+              <h3 className="text-3xl font-bold text-primary mb-8">Technical Skills</h3>
+              <div className="space-y-6">
+                {skills.technical.map((skill, index) => (
+                  <div key={skill.name} className="fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <div className="flex justify-between mb-2">
+                      <span className="text-lg font-medium text-white">{skill.name}</span>
+                      <span className="text-primary font-bold">{skill.level}%</span>
+                    </div>
+                    <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-1000"
+                        style={{ width: `${skill.level}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Creative Skills */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-white/10 hover:border-primary/30 transition-all duration-300">
+              <h3 className="text-3xl font-bold text-primary mb-8">Creative Skills</h3>
+              <div className="space-y-6">
+                {skills.creative.map((skill, index) => (
+                  <div key={skill.name} className="fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <div className="flex justify-between mb-2">
+                      <span className="text-lg font-medium text-white">{skill.name}</span>
+                      <span className="text-primary font-bold">{skill.level}%</span>
+                    </div>
+                    <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-1000"
+                        style={{ width: `${skill.level}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Tools & Platforms */}
+          <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-white/10">
+            <h3 className="text-3xl font-bold text-primary mb-8 text-center">Tools & Platforms</h3>
+            <div className="flex justify-center gap-3">
+              {[
+                { name: 'YouTube', icon: '/YouTube.png' },
+                { name: 'Instagram', icon: '/instagram.png' },
+                { name: 'TikTok', icon: '/TikTok.png' },
+                { name: 'Premiere Pro', icon: '/Premiere Pro.png' },
+                { name: 'CapCut', icon: '/capcut.png' },
+                { name: 'After Effects', icon: '/After_Effects.png' }
+              ].map((tool) => (
+                <div
+                  key={tool.name}
+                  className="flex items-center justify-center gap-5 px-4 py-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 hover:border-primary/50 transition-all duration-300 flex-shrink-0"
+                >
+                  <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+                    <img 
+                      src={tool.icon} 
+                      alt={tool.name}
+                      className="w-12 h-12 object-contain flex-shrink-0"
+                    />
+                  </div>
+                  <span className="text-white font-medium text-sm whitespace-nowrap">{tool.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* Work Experience Section */}
+      <section id="work-experience" className="relative min-h-screen flex items-center justify-center px-6 py-20 z-0 bg-white/[0.02]">
+        <div className="max-w-6xl w-full">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold mb-4">
+              Work <span className="text-primary">Experience</span>
+            </h2>
+            <p className="text-gray-400 text-lg">My professional journey as a video editor</p>
+          </div>
+          
+          <div className="space-y-8">
+            {/* Escasa */}
+            <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-white/10 hover:border-primary/50 transition-all duration-300 group">
+              <div className="absolute top-0 left-0 w-1 h-full bg-primary rounded-l-3xl"></div>
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
+                <div>
+                  <h3 className="text-3xl font-bold text-white group-hover:text-primary transition-colors">Escasa</h3>
+                  <p className="text-xl text-primary mt-1">Video Editor</p>
+                  <p className="text-gray-400 mt-2">Jan 2024 - Jan 2025 | 1 Year</p>
+                </div>
+              </div>
+              <ul className="space-y-4 text-gray-300">
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">•</span>
+                  <span>Produced high-quality content aligned with brand style, platform format, and campaign requirements</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">•</span>
+                  <span>Improved videos through color correction, audio enhancement, subtitles, trimming, and engaging visual flow</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">•</span>
+                  <span>Supported content planning and scheduling for consistent posting and stronger audience engagement</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">•</span>
+                  <span className="text-white font-medium">Created content that helped achieve over 100K followers</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Digitro */}
+            <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-white/10 hover:border-primary/50 transition-all duration-300 group">
+              <div className="absolute top-0 left-0 w-1 h-full bg-primary rounded-l-3xl"></div>
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
+                <div>
+                  <h3 className="text-3xl font-bold text-white group-hover:text-primary transition-colors">Digitro</h3>
+                  <p className="text-xl text-primary mt-1">Video Editor</p>
+                  <p className="text-gray-400 mt-2">Feb 2025 - Jul 2025 | 6 Months</p>
+                </div>
+              </div>
+              <ul className="space-y-4 text-gray-300">
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">•</span>
+                  <span>Edited short-form and long-form content for digital platforms, maintaining a modern and professional editing style</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">•</span>
+                  <span>Added engaging elements like lower thirds, transitions, captions, and effects to make videos more engaging</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">•</span>
+                  <span>Prepared client-ready exports in multiple formats optimized for YouTube, Instagram, TikTok, and ads</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Jawaplum */}
+            <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-white/10 hover:border-primary/50 transition-all duration-300 group">
+              <div className="absolute top-0 left-0 w-1 h-full bg-primary rounded-l-3xl"></div>
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
+                <div>
+                  <h3 className="text-3xl font-bold text-white group-hover:text-primary transition-colors">Jawaplum</h3>
+                  <p className="text-xl text-primary mt-1">Video Editor</p>
+                  <p className="text-gray-400 mt-2">Aug 2025 - Present</p>
+                </div>
+              </div>
+              <ul className="space-y-4 text-gray-300">
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">•</span>
+                  <span>Providing videography and editing services for diverse clients including doctors, restaurants, and local businesses</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">•</span>
+                  <span>Created engaging and client-focused promotional content with a strong focus on storytelling and audience retention</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">•</span>
+                  <span>Created polished videos using Adobe Premiere Pro and CapCut Pro, including captions, transitions, sound effects, and smooth pacing</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">•</span>
+                  <span>Handled revisions, exports, and final delivery to meet brand and client requirements</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section id="portfolio" className="relative min-h-screen flex items-center justify-center px-6 py-20 z-0">
+        <div className="max-w-6xl w-full">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold mb-4">
+              My <span className="text-primary">Portfolio</span>
+            </h2>
+            <p className="text-gray-400 text-lg">Showcasing my video editing projects</p>
+          </div>
+
+          {/* Short-Form Videos Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-white mb-6 text-center">
+              Short-Form Content <span className="text-primary">(Shorts/Reels/TikTok)</span>
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {youtubeVideos.filter(video => video.isShort).map((video) => (
+                <div
+                  key={video.id}
+                  className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 hover:border-primary/50 transition-all duration-300 group"
+                >
+                  <div className="relative w-full aspect-[9/16] rounded-lg overflow-hidden border border-primary/30 group-hover:border-primary transition-all duration-300 mb-3">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${video.id}?rel=0`}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="absolute inset-0"
+                      style={{ border: 0 }}
+                    />
+                  </div>
+                  <h4 className="text-sm font-bold text-white group-hover:text-primary transition-colors mb-1 line-clamp-2">
+                    {video.title}
+                  </h4>
+                  <p className="text-xs text-gray-400 line-clamp-2">
+                    {video.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Long-Form Videos Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-white mb-6 text-center">
+              Long-Form Content <span className="text-primary">(YouTube Videos)</span>
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+              {youtubeVideos.filter(video => !video.isShort).map((video) => (
+                <div
+                  key={video.id}
+                  className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 hover:border-primary/50 transition-all duration-300 group"
+                >
+                  <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-primary/30 group-hover:border-primary transition-all duration-300 mb-3">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${video.id}?rel=0`}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="absolute inset-0"
+                      style={{ border: 0 }}
+                    />
+                  </div>
+                  <h4 className="text-base font-bold text-white group-hover:text-primary transition-colors mb-2">
+                    {video.title}
+                  </h4>
+                  <p className="text-sm text-gray-400">
+                    {video.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Additional Portfolio Items */}
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {[
+              { title: 'Social Media Campaigns', count: '50+', icon: '📱' },
+              { title: 'Brand Videos', count: '30+', icon: '🎬' },
+              { title: 'Client Projects', count: '100+', icon: '✨' },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="text-center p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-primary/50 hover:scale-105 transition-all duration-300"
+              >
+                <div className="text-5xl mb-4">{item.icon}</div>
+                <div className="text-3xl font-bold text-primary mb-2">{item.count}</div>
+                <div className="text-gray-400">{item.title}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm rounded-3xl p-12 border border-primary/30">
+            <h3 className="text-3xl font-bold text-white mb-4">Want to see more?</h3>
+            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+              I have worked on numerous projects across different platforms. Get in touch to discuss 
+              your video editing needs or to see more samples of my work.
+            </p>
+            <button
+              onClick={() => {
+                setActiveSection('contact');
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="inline-block px-8 py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/50"
+            >
+              Contact Me
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="relative min-h-screen flex items-center justify-center px-6 py-20 z-0">
+        <div className="max-w-4xl w-full">
+          <h2 className="text-5xl font-bold text-center mb-12">
+            Get In <span className="text-primary">Touch</span>
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 space-y-6">
+              <h3 className="text-2xl font-bold text-primary mb-6">Contact Info</h3>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Location</p>
+                    <p className="text-white">Faisalabad</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Phone</p>
+                    <p className="text-white">+92 3295527929</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Email</p>
+                    <p className="text-white text-sm">abdullahkhalidofficial3@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10">
+              <h3 className="text-2xl font-bold text-primary mb-6">Send Message</h3>
+              <form className="space-y-4">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                />
+                <textarea
+                  placeholder="Your Message"
+                  rows={4}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors resize-none"
+                />
+                <button
+                  type="submit"
+                  className="w-full px-8 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/50"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="relative py-8 px-6 border-t border-white/10 z-0">
+        <div className="max-w-6xl mx-auto text-center text-gray-400">
+          <p>&copy; 2026 Abdullah Khalid. All rights reserved.</p>
+          <p className="mt-2 text-sm">
+            Designed with <span className="text-primary">creativity</span> and{' '}
+            <span className="text-primary">passion</span>
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
